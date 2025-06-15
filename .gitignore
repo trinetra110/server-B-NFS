@@ -20,4 +20,5 @@ go.work.sum
 !README.md
 !LICENSE
 .hintrc
-mock-zfs-storage
+mock-zfs-storage/
+storage/
