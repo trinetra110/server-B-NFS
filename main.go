@@ -30,7 +30,7 @@ type StoreResponse struct {
 }
 
 func NewStorageServer() *StorageServer {
-	baseDir := os.Getenv("STORAGE_DIR")
+	baseDir := os.Getenv("STORAGE_ROOT")
 	if baseDir == "" {
 		baseDir = "./storage"
 	}
@@ -156,6 +156,7 @@ func (s *StorageServer) getFileContent(w http.ResponseWriter, r *http.Request) {
 	codebaseID := vars["id"]
 	filePath := r.URL.Query().Get("file")
 	log.Printf("Requesting content for file: %s in codebase: %s", filePath, codebaseID)
+
 	if _, err := uuid.Parse(codebaseID); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid codebase ID")
 		return
